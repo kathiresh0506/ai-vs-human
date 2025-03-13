@@ -1,5 +1,4 @@
 streamlit
 ollama
 firebase-admin
-difflib
 pytz
