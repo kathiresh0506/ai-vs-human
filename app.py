@@ -2,14 +2,15 @@ import streamlit as st
 import ollama
 import firebase_admin
 from firebase_admin import credentials, firestore
-import difflib
 import time
 from datetime import datetime
 import pytz
+import json
 
-# Initialize Firebase
+# Initialize Firebase using Streamlit secrets
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase_config.json")
+    firebase_config = json.loads(st.secrets["firebase"])
+    cred = credentials.Certificate(firebase_config)
     firebase_admin.initialize_app(cred)
 
 # Firestore reference
