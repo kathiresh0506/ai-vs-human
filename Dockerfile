@@ -1,16 +1,16 @@
-# Use an official Ubuntu image as a base
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
-# Install curl to download Ollama
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -fsSL https://ollama.com/install.sh | sh
+# Install dependencies
+RUN apt-get update && apt-get install -y curl
 
-# Expose Ollama's default API port (11434)
+# Install Ollama
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+# Set Ollama to listen on all interfaces
+ENV OLLAMA_HOST=0.0.0.0:11434
+
+# Expose the Ollama port
 EXPOSE 11434
 
-
-
-# Run Ollama's server when the container starts
-CMD ["your_app", "--host=0.0.0.0", "--port=11434"]
-
+# Start Ollama
+CMD ["ollama", "serve"]
