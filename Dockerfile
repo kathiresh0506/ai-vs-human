@@ -7,7 +7,8 @@ RUN apt-get update && \
     curl -fsSL https://ollama.com/install.sh | sh
 
 # Expose Ollama's default API port (11434)
-EXPOSE 11434
+EXPOSE 8080
+
 
 # Run Ollama's server when the container starts
 CMD ["ollama", "serve"]
